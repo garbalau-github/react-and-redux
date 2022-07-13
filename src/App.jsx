@@ -18,7 +18,7 @@ const App = () => {
   console.log(state);
 
   // Have the cart object
-  console.log(cart);
+  console.log(cart.arr);
 
   // Dispatch object initialized
   const dispatch = useDispatch();
@@ -59,13 +59,16 @@ const App = () => {
         </div>
         <div>
           <h3>Cart</h3>
-          {cart.map((cartElement, idx) => {
-            return (
-              <p key={(Math.random() * 10).toString()}>
-                {idx + 1} {cartElement}
-              </p>
-            );
-          })}
+          {cart.arr &&
+            cart.arr.map((cartElement, idx) => {
+              return (
+                <div key={(Math.random() * 10).toString()}>
+                  <span>
+                    {idx + 1} {cartElement}
+                  </span>
+                </div>
+              );
+            })}
         </div>
       </>
     </div>
