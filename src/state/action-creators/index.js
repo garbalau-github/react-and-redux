@@ -15,3 +15,10 @@ export const withdrawMoney = (amount) =>
     type: 'withdraw',
     payload: amount,
   });
+
+export const addToCart = (item) =>
+  // Return a function that has dispatch as a parameter
+  ({
+    type: 'add',
+    payload: item,
+  });

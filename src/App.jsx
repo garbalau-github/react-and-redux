@@ -13,28 +13,60 @@ import { actionCreators } from './state/index';
 
 const App = () => {
   const account = useSelector((state) => state.account);
-  // Now we have the store object in the component
-  console.log(account);
+  const cart = useSelector((state) => state.cart);
+  const state = useSelector((state) => state);
+  console.log(state);
+
+  // Have the cart object
+  console.log(cart);
 
   // Dispatch object initialized
   const dispatch = useDispatch();
 
   // Bind Action Creators and add dispatch, then destructure them for us
   // and now have access to Action Creatores in our component
-  const { depositMoney, withdrawMoney } = bindActionCreators(
+  const { addToCart, depositMoney, withdrawMoney } = bindActionCreators(
     actionCreators,
     dispatch
   );
 
+  // Static items
+  const items = ['Water', 'Bananas', 'Juice', 'Apples'];
+
   return (
-    <div className='App'>
+    <div style={{ padding: '20px' }}>
       <>
         <h2>Balance: {account}$</h2>
         <>
           {/* Events to dispatch actions */}
-          <button onClick={() => depositMoney(1000)}>Deposit $</button>
-          <button onClick={() => withdrawMoney(1000)}>Withdraw $</button>
+          <button onClick={() => depositMoney(1000)}>Deposit</button>
+          <button onClick={() => withdrawMoney(1000)}>Withdraw</button>
         </>
+        <div>
+          <hr />
+        </div>
+        <div>
+          <br />
+          <h3>Items</h3>
+          {items.map((item) => {
+            return (
+              <button key={item} onClick={() => addToCart(item)}>
+                {item}
+              </button>
+            );
+          })}
+          <br />
+        </div>
+        <div>
+          <h3>Cart</h3>
+          {cart.map((cartElement, idx) => {
+            return (
+              <p key={(Math.random() * 10).toString()}>
+                {idx + 1} {cartElement}
+              </p>
+            );
+          })}
+        </div>
       </>
     </div>
   );
