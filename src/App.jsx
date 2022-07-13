@@ -1,16 +1,13 @@
-import { useState } from 'react';
-
 // Now we have the access to our Redux global state, we need this hook
 import { useSelector } from 'react-redux';
 
 const App = () => {
-  // Return state from the state
-  const state = useSelector((state) => state);
+  const account = useSelector((state) => state.account);
 
   // Now we have the store object in the component
-  console.log(state);
+  console.log(account);
 
-  return <div className='App'>Hello World</div>;
+  return <div className='App'>Balance: {account}$</div>;
 };
 
 export default App;
