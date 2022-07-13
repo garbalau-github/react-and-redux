@@ -31,8 +31,9 @@ const App = () => {
       <>
         <h2>Balance: {account}$</h2>
         <>
-          <button>Deposit $</button>
-          <button>Withdraw $</button>
+          {/* Events to dispatch actions */}
+          <button onClick={() => depositMoney(1000)}>Deposit $</button>
+          <button onClick={() => withdrawMoney(1000)}>Withdraw $</button>
         </>
       </>
     </div>
