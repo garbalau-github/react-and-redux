@@ -1,7 +1,8 @@
 // Needed imports
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
+import thunk from 'redux-thunk';
 
-// Creating a store (reducers, default state)
-export const store = createStore(reducers, {});
+// Creating a store (reducers, default state, add middleware for async requests)
+export const store = createStore(reducers, {}, applyMiddleware(thunk));
