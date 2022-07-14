@@ -14,21 +14,14 @@ import { actionCreators } from './state/index';
 const App = () => {
   const account = useSelector((state) => state.account);
   const cart = useSelector((state) => state.cart);
-  const state = useSelector((state) => state);
-  console.log(state);
-
-  // Have the cart object
-  console.log(cart.arr);
 
   // Dispatch object initialized
   const dispatch = useDispatch();
 
   // Bind Action Creators and add dispatch, then destructure them for us
   // and now have access to Action Creatores in our component
-  const { addToCart, depositMoney, withdrawMoney } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const { addToCart, removeFromCart, depositMoney, withdrawMoney } =
+    bindActionCreators(actionCreators, dispatch);
 
   // Static items
   const items = ['Water', 'Bananas', 'Juice', 'Apples'];
@@ -60,11 +53,14 @@ const App = () => {
         <div>
           <h3>Cart</h3>
           {cart.arr &&
-            cart.arr.map((cartElement, idx) => {
+            cart.arr.map((cartElement) => {
               return (
                 <div key={(Math.random() * 10).toString()}>
                   <span>
-                    {idx + 1} {cartElement}
+                    {cartElement}
+                    <button onClick={() => removeFromCart(cartElement)}>
+                      x
+                    </button>
                   </span>
                 </div>
               );

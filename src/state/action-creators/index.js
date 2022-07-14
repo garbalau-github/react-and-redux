@@ -22,3 +22,10 @@ export const addToCart = (item) =>
     type: 'add',
     payload: item,
   });
+
+export const removeFromCart = (item) =>
+  // Return a function that has dispatch as a parameter
+  ({
+    type: 'remove',
+    payload: item,
+  });

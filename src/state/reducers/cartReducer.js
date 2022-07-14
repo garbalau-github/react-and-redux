@@ -18,6 +18,18 @@ const reducer = (state = initialUserState, action) => {
         ...state,
         arr: [...state.arr, action.payload],
       };
+    case 'remove':
+      // Add to state
+      console.log(`${action.type}: ${action.payload} to [${state}]`);
+      // state.push(action.payload);
+      return {
+        ...state,
+        arr: [
+          ...state.arr.filter((element) => {
+            return element !== action.payload;
+          }),
+        ],
+      };
     default:
       return state;
   }
